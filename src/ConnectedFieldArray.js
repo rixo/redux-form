@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import PropTypes from 'prop-types'
+import CustomPropTypes from './util/PropTypes'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import createFieldArrayProps from './createFieldArrayProps'
@@ -122,11 +123,7 @@ const createConnectedFieldArray = (structure: Structure<*, *>) => {
   }
 
   ConnectedFieldArray.propTypes = {
-    component: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.string,
-      PropTypes.node
-    ]).isRequired,
+    component: CustomPropTypes.component.isRequired,
     props: PropTypes.object,
     rerenderOnEveryChange: PropTypes.bool
   }

@@ -2,6 +2,7 @@
 import React, { Component, createElement } from 'react'
 import { polyfill } from 'react-lifecycles-compat'
 import PropTypes from 'prop-types'
+import CustomPropTypes from './util/PropTypes'
 import invariant from 'invariant'
 import createConnectedField from './ConnectedField'
 import shallowCompare from './util/shallowCompare'
@@ -46,7 +47,7 @@ const createField = (structure: Structure<*, *>) => {
     shouldComponentUpdate(nextProps: Props, nextState?: Object) {
       return shallowCompare(this, nextProps, nextState)
     }
-    
+
     componentWillReceiveProps(nextProps: Props, nextContext: any) {
       const oldName = prefixName(this.context, this.props.name)
       const newName = prefixName(nextContext, nextProps.name)
@@ -127,11 +128,7 @@ const createField = (structure: Structure<*, *>) => {
 
   Field.propTypes = {
     name: PropTypes.string.isRequired,
-    component: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.string,
-      PropTypes.node
-    ]).isRequired,
+    component: CustomPropTypes.component.isRequired,
     format: PropTypes.func,
     normalize: PropTypes.func,
     onBlur: PropTypes.func,

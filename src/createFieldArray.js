@@ -2,6 +2,7 @@
 import React, { Component, createElement } from 'react'
 import { polyfill } from 'react-lifecycles-compat'
 import PropTypes from 'prop-types'
+import CustomPropTypes from './util/PropTypes'
 import invariant from 'invariant'
 import createConnectedFieldArray from './ConnectedFieldArray'
 import prefixName from './util/prefixName'
@@ -114,11 +115,7 @@ const createFieldArray = (structure: Structure<*, *>) => {
 
   FieldArray.propTypes = {
     name: PropTypes.string.isRequired,
-    component: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.string,
-      PropTypes.node
-    ]).isRequired,
+    component: CustomPropTypes.component.isRequired,
     props: PropTypes.object,
     validate: PropTypes.oneOfType([
       PropTypes.func,

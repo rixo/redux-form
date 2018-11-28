@@ -2,6 +2,7 @@
 import { Component, createElement } from 'react'
 import { polyfill } from 'react-lifecycles-compat'
 import PropTypes from 'prop-types'
+import CustomPropTypes from './util/PropTypes'
 import invariant from 'invariant'
 import createConnectedFields from './ConnectedFields'
 import shallowCompare from './util/shallowCompare'
@@ -44,7 +45,9 @@ const createFields = (structure: Structure<*, *>) => {
 
     componentDidMount() {
       const { context } = this
-      const { _reduxForm: { register } } = context
+      const {
+        _reduxForm: { register }
+      } = context
       this.names.forEach(name => register(name, 'Field'))
     }
 
@@ -109,11 +112,7 @@ const createFields = (structure: Structure<*, *>) => {
 
   Fields.propTypes = {
     names: (props, propName) => validateNameProp(props[propName]),
-    component: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.string,
-      PropTypes.node
-    ]).isRequired,
+    component: CustomPropTypes.component.isRequired,
     format: PropTypes.func,
     parse: PropTypes.func,
     props: PropTypes.object,
