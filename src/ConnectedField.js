@@ -1,6 +1,7 @@
 // @flow
 import React, { Component, createElement } from 'react'
 import PropTypes from 'prop-types'
+import CustomPropTypes from './util/PropTypes'
 import { connect } from 'react-redux'
 import createFieldProps from './createFieldProps'
 import onChangeValue from './events/onChangeValue'
@@ -296,11 +297,7 @@ const createConnectedField = (structure: Structure<*, *>) => {
   }
 
   ConnectedField.propTypes = {
-    component: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.string,
-      PropTypes.node
-    ]).isRequired,
+    component: CustomPropTypes.component.isRequired,
     props: PropTypes.object
   }
 
